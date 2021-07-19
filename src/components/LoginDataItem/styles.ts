@@ -19,7 +19,7 @@ export const LoginData = styled.View``;
 export const Password = styled.Text`
   font-size: ${(RFValue(26))}px;
   font-family: 'Poppins_500Medium';
-  color: #9883BF;
+  color: ${({ theme }) => theme.colors.primary_light};
 
   margin: 0 auto;
 `;
@@ -28,13 +28,13 @@ export const Title = styled.Text`
   margin-bottom: ${RFValue(4)}px;
   font-family: 'Poppins_500Medium';
   font-size: ${RFValue(12)}px;
-  color: #4E3975;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Email = styled.Text`
   font-family: 'Poppins_500Medium';
   font-size: ${RFValue(12)}px;
-  color: #9883BF;
+  color: ${({ theme }) => theme.colors.primary_light};
 `;
 
 export const ShowPasswordButton = styled.TouchableOpacity``;
@@ -42,4 +42,5 @@ export const ShowPasswordButton = styled.TouchableOpacity``;
 export const Icon = styled(Feather).attrs({
   size: 24,
   color: '#4E3975'
-})``;
+})`
+`;

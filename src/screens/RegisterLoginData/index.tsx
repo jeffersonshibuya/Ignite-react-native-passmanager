@@ -15,6 +15,7 @@ import {
   HeaderTitle,
   Form
 } from './styles';
+import { useStorage } from '../../hooks/useStorageData';
 
 interface FormData {
   title: string;
@@ -29,6 +30,9 @@ const schema = Yup.object().shape({
 })
 
 export function RegisterLoginData() {
+
+  const { setItem } = useStorage()
+
   const {
     control,
     handleSubmit,
@@ -46,17 +50,7 @@ export function RegisterLoginData() {
       ...formData
     }
 
-    // Get data stored on async storage
-    const data = await AsyncStorage.getItem('@passmanager:logins')
-    const currentData = data ? JSON.parse(data) : [];
-
-    const dataFormatted = [
-      ...currentData,
-      newLoginData
-    ]
-
-    // Save data on AsyncStorage
-    await AsyncStorage.setItem('@passmanager:logins', JSON.stringify(dataFormatted))
+    await setItem(newLoginData);
     reset();
   }
 

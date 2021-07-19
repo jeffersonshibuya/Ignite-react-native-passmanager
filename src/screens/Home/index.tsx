@@ -11,6 +11,7 @@ import {
   EmptyListContainer,
   EmptyListMessage
 } from './styles';
+import { useStorage } from '../../hooks/useStorageData';
 
 interface LoginDataProps {
   id: string;
@@ -22,12 +23,16 @@ interface LoginDataProps {
 type LoginListDataProps = LoginDataProps[];
 
 export function Home() {
+
+  const { getItem } = useStorage()
+
   const [searchListData, setSearchListData] = useState<LoginListDataProps>([]);
   const [data, setData] = useState<LoginListDataProps>([]);
 
   async function loadData() {
     // Get asyncStorage data, use setSearchListData and setData
-    const response = await AsyncStorage.getItem('@passmanager:logins')
+    // const response = await AsyncStorage.getItem('@passmanager:logins')
+    const response = await getItem();
 
     if (response) {
       const dataFormatted = JSON.parse(response)
